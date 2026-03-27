@@ -1,0 +1,61 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="Section-Front">
+
+    <div class="hero-text">
+        <h1>O Futuro em suas mãos</h1>
+        <p>Conheça mais sobre nós</p>
+        <a class="btn btn-light" asp-page="/Privacy">Quem somos</a>
+    </div>
+
+    <div class="hero-model">
+        <model-viewer src="@Url.Content("~/models/Car.glb")"
+                      auto-rotate
+                      camera-controls>
+        </model-viewer>
+    </div>
+
+</div>
+
+<div class="Random-Ad">
+    <img src="~/Imgs/PlaceHolder.png" alt="Imagem Placeholder Comercial" />
+</div>
+
+<h2>Conheça nossos veículos</h2>
+
+<div class="filter-buttons">
+    <button data-filter="all" class="active">Todos</button>
+    <button data-filter="suv">SUVs</button>
+    <button data-filter="sedan">Sedans</button>
+</div>
+
+<div class="Veiculos">
+    <div class="card sedan">
+        <img src="~/Imgs/Cars/HONDA_CIVIC.png" alt="Honda Civic">
+            <h4>Honda Civic</h4>
+        </div>
+
+        <div class="card suv">
+            <img src="~/Imgs/Cars/TRACKER.png" alt="Tracker">
+                <h4>Tracker</h4>
+            </div>
+
+            <div class="card suv">
+                <img src="~/Imgs/Cars/EQUINOX.png" alt="Equinox">
+                    <h4>Equinox</h4>
+                </div>
+
+                <div class="card suv">
+                    <img src="~/Imgs/Cars/TRAILBLAZER.png" alt="Trailblazer">
+                        <h4>Trailblazer</h4>
+                    </div>
+                </div>
+
+                @section Scripts {
+                    <script src="~/js/Home.js"></script>
+                    <script type="module" src="https://unpkg.com/@@google/model-viewer/dist/model-viewer.min.js"></script>
+                }
