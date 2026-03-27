@@ -2,10 +2,12 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
 }
 
-<div class="Section-Front">
 
+<div class="Section-Front">
+    <img class="background-hero" src="~/Imgs/beautiful-shot-snowy-mountain-sunset.jpg" />
     <div class="hero-text">
         <h1>O Futuro em suas mãos</h1>
         <p>Conheça mais sobre nós</p>
@@ -18,7 +20,8 @@
                       camera-controls>
         </model-viewer>
     </div>
-
+    <img class="Linhas1" src="~/Imgs/Effects/EffectRedLine.png" alt="Imagem Placeholder Comercial" />
+    <img class="Linhas2" src="~/Imgs/Effects/EffectRedLine.png" alt="Imagem Placeholder Comercial" />
 </div>
 
 <div class="Random-Ad">

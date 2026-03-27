@@ -4,55 +4,111 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CarMark</title>
-    <script type="importmap"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CarMark.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/Layout.css" asp-append-version="true" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">CarMark</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Comprar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Veículos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Quem somos</a>
-                        </li>
-                    </ul>
+
+    <div class="page-wrapper">
+
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark custom-navbar-shadow">
+                <div class="container">
+                    <a class="navbar-brand" asp-page="/Index">CarMark</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">Comprar</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">Veículos</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">Serviços</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">Quem somos</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+            </nav>
+        </header>
+
+        <main class="main-content">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - CarMark - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+        <footer class="footer-32892">
+            <div class="container">
+                <div class="row">
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+                    <div class="col-md pr-md-5 mb-4 mb-md-0">
+                        <h3>About Us</h3>
+                        <p class="mb-4">
+                            CarMark is leading the future of automotive innovation with premium vehicles and cutting-edge technology.
+                        </p>
 
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
+                        <ul class="list-unstyled quick-info mb-4">
+                            <li>+1 291 3912 329</li>
+                            <li>info@carmark.com</li>
+                        </ul>
+
+                        <form class="subscribe">
+                            <input type="text" class="form-control" placeholder="Enter your e-mail">
+                            <input type="submit" class="btn btn-submit" value="Send">
+                        </form>
+                    </div>
+
+                    <div class="col-md mb-4 mb-md-0">
+                        <h3>Latest News</h3>
+                        <ul class="list-unstyled tweets">
+                            <li>New 3D vehicle experience now live.</li>
+                            <li>Visit us this weekend for a test drive.</li>
+                            <li>New SUV lineup available.</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 mb-4 mb-md-0">
+                        <h3>Gallery</h3>
+                        <div class="row gallery">
+                            <div class="col-6">
+                                <img src="~/Imgs/img_1.jpg" class="img-fluid">
+                                    <img src="~/Imgs/img_2.jpg" class="img-fluid">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="~/Imgs/img_3.jpg" class="img-fluid">
+                                            <img src="~/Imgs/img_4.jpg" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="footer-menu-wrap d-md-flex align-items-center">
+                                            <ul class="footer-menu mr-auto">
+                                                <li><a asp-page="/Index">Home</a></li>
+                                                <li><a asp-page="/Privacy">About</a></li>
+                                                <li><a href="#">Services</a></li>
+                                                <li><a href="#">Contacts</a></li>
+                                            </ul>
+                                            <div class="site-logo-wrap ml-auto">
+                                                <span class="site-logo">© 2026 CarMark</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </footer>
+
+                    </div>
+
+                    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                    @await RenderSectionAsync("Scripts", required: false)
+
+                </body>
+            </html>
