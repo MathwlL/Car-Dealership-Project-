@@ -123,13 +123,23 @@ body {
                 margin: auto;
             }
 
-        .Veiculos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px auto 50vh auto;
-        }
+            h2{
+                display: flex;
+                justify-content: center;
+            }
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.Veiculos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px auto 50vh auto;
+}
 
         .card {
             flex: 0 0 220px;
@@ -175,7 +185,7 @@ body {
                 }
 
                 .filter-buttons button.active {
-                    background: #258cfb;
+                    background: #c40202;
                 }
 
         @media (max-width: 768px) {
