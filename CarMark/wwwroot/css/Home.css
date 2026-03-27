@@ -19,7 +19,9 @@ html {
 }
 
 body {
+    color: white;
     margin-bottom: 60px;
+    background:#222325;
 }
 
 .form-floating > .form-control-plaintext::placeholder,
@@ -39,13 +41,13 @@ body {
     min-height: 90vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 60px;
     background: linear-gradient(to right, rgba(17, 17, 17, 0.8), rgba(51, 51, 51, 0.8));
     color: white;
     margin-bottom: 10vh;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .background-hero {
@@ -59,150 +61,160 @@ body {
     pointer-events: none;
 }
 
-.Section-Front .hero-text,
-.Section-Front .hero-model {
-    position: relative;
-    z-index: 1;
-}
-
-.Section-Front .Linhas1 {
+.hero-model {
     position: absolute;
-    pointer-events: none;
-    z-index: 2;
-    margin-bottom: -40vw;
-}
-
-
-.Section-Front .Linhas2 {
-    position: absolute;
-    pointer-events: none;
-    z-index: 2;
     top: 0;
-    right: 0;
-    -webkit-transform: scaleY(-1) scaleX(-1);
-    transform: scaleY(-1) scaleX(-1);
-} 
-
-        .hero-text {
-            max-width: 500px;
-        }
-
-            .hero-text h1 {
-                font-size: 3rem;
-                margin-bottom: 20px;
-            }
-
-            .hero-text p {
-                margin-bottom: 20px;
-                font-size: 1.2rem;
-            }
-
-
-        .hero-model {
-            width: 200vh;
-            height: 100vh;
-            overflow: hidden;
-            margin: -5vh 0 -5vh 0;
-        }
-
-            .hero-model model-viewer {
-                width: 100%;
-                height: 100%;
-                background: transparent;
-            }
-
-        .Random-Ad {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10vh;
-        }
-
-            .Random-Ad img {
-                max-width 100%;
-                margin: auto;
-            }
-
-h2 {
-    display: flex;
-    justify-content: center;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
 }
 
-.Veiculos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin: 20px auto 50vh auto;
-}
-
-.card {
-    flex: 0 0 220px;
-    text-align: center;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: white;
-}
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .card img {
+    .hero-model model-viewer {
         width: 100%;
-        border-radius: 8px;
+        height: 100%;
+        background: transparent;
     }
 
-    .card h4 {
-        margin-top: 10px;
+   .Section-Front .Linhas1 {
+        position: absolute;
+        pointer-events: none;
+        z-index: 2;
+        margin-bottom: -40vw;
     }
 
-.filter-buttons {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-    .filter-buttons button {
-        margin-right: 10px;
-        padding: 10px 15px;
-        border: none;
-        background: #333;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: 0.3s;
+    .Section-Front .Linhas2 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 2;
+        -webkit-transform: scaleY(-1) scaleX(-1);
+        transform: scaleY(-1) scaleX(-1);
     }
 
-    .filter-buttons button:hover {
-        background: #555;
+    .hero-text {
+        position: relative;
+        z-index: 10;
+        max-width: 500px;
+        margin-left: 60px;
+        pointer-events: none;
     }
 
-    .filter-buttons button.active {
-        background: #c40202;
-}
+        .hero-text h1,
+        .hero-text p,
+        .hero-text a,
+        .hero-text button {
+            pointer-events: auto;
+        }
 
-@media (max-width: 768px) {
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
 
-    .Section-Front {
-        flex-direction: column;
-        text-align: center;
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+    .Random-Ad {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10vh;
+        margin-top: 10vh;
     }
 
-    .hero-model {
-        width: 100%;
-        height: 300px;
-        margin-top: 20px;
-    }
+        .Random-Ad img {
+            max-width: 70%;
+            margin: auto;
+        }
 
-    .hero-text h1 {
-        font-size: 2rem;
+    h2 {
+        display: flex;
+        justify-content: center;
     }
 
     .Veiculos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin: 20px auto 50vh auto;
+    }
+
+    .card {
+        flex: 0 220px;
+        height: 30vh;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            margin-top: 30px;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .card h4 {
+            margin-top: 10px;
+        }
+
+    .filter-buttons {
+        margin-bottom: 20px;
+        display: flex;
         justify-content: center;
     }
-}
+
+        .filter-buttons button {
+            margin-right: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+            .filter-buttons button:hover {
+                background: #555;
+            }
+
+            .filter-buttons button.active {
+                background: #c40202;
+            }
+
+    @media (max-width: 768px) {
+
+        .Section-Front {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero-model {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+        }
+
+        .Veiculos {
+            justify-content: center;
+        }
+    }
