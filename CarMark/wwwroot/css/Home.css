@@ -136,6 +136,7 @@ body {
 
     h2 {
         display: flex;
+        margin-top: 10vh;
         justify-content: center;
     }
 
@@ -147,15 +148,14 @@ body {
         margin: 20px auto 50vh auto;
     }
 
-    .card {
-        flex: 0 220px;
-        height: 30vh;
-        text-align: center;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-    }
+.card {
+    flex: 0 220px;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+    background: #fff0;
+    color: white
+}
 
         .card:hover {
             transform: scale(1.05);
@@ -165,7 +165,6 @@ body {
         .card img {
             margin-top: 30px;
             width: 100%;
-            border-radius: 8px;
         }
 
         .card h4 {
@@ -173,7 +172,7 @@ body {
         }
 
     .filter-buttons {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         display: flex;
         justify-content: center;
     }
