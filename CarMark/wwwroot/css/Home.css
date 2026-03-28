@@ -145,7 +145,7 @@ body {
         flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
-        margin: 20px auto 50vh auto;
+        margin: 10px auto 10vh auto;
     }
 
 .card {
@@ -205,7 +205,7 @@ body {
 
         .hero-model {
             width: 100%;
-            height: 300px;
+            height: 200px;
             margin-top: 20px;
         }
 
@@ -217,3 +217,55 @@ body {
             justify-content: center;
         }
     }
+.faq-container {
+    margin: 10vh auto 10vh auto;
+    width: 90%;
+    max-width: 700px;
+}
+
+.faq-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq-item {
+    background: #333;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+    .faq-question:hover {
+        background: #ff000075;
+    }
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: #cbd5f5;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 16px;
+}
+
+.icon {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .icon {
+    transform: rotate(180deg);
+}

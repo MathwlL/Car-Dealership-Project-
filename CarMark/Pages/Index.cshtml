@@ -9,9 +9,9 @@
 <div class="Section-Front">
     <img class="background-hero" src="~/Imgs/beautiful-shot-snowy-mountain-sunset.jpg" />
     <div class="hero-text">
-        <h1>O Futuro em suas mãos</h1>
-        <p>Conheça mais sobre nós</p>
-        <a class="btn btn-light" asp-page="/Privacy">Quem somos</a>
+        <h1>The Future Is in Your Hands</h1>
+        <p>Learn more about us</p>
+        <a class="btn btn-light" asp-page="/Privacy">About Us</a>
     </div>
 
     <div class="hero-model">
@@ -34,10 +34,10 @@
 
 <hr /> <!-- Lembrar de colocar mais carros -->
 
-<h2>Conheça nossos veículos</h2>
+<h2>Discover our vehicles</h2>
 
 <div class="filter-buttons">
-    <button data-filter="all" class="active">Todos</button>
+    <button data-filter="all" class="active">All</button>
     <button data-filter="suv">SUVs</button>
     <button data-filter="sedan">Sedans</button>
 </div>
@@ -49,20 +49,57 @@
         </div>
 
         <div class="card suv">
-            <img src="~/Imgs/Cars/TRACKER.png" alt="Tracker">
+            <img src="~/Imgs/Cars/CHEVROLET_TRACKER.png" alt="Tracker">
                 <h4>Tracker</h4>
             </div>
 
             <div class="card suv">
-                <img src="~/Imgs/Cars/EQUINOX.png" alt="Equinox">
+                <img src="~/Imgs/Cars/CHEVROLET_EQUINOX.png" alt="Equinox">
                     <h4>Equinox</h4>
                 </div>
 
                 <div class="card suv">
-                    <img src="~/Imgs/Cars/TRAILBLAZER.png" alt="Trailblazer">
+                    <img src="~/Imgs/Cars/CHEVROLET_TRAILBLAZER.png" alt="Trailblazer">
                         <h4>Trailblazer</h4>
                     </div>
                 </div>
+ 
+<hr /> <!-- Area de faq -->
+
+<div class="faq-container">
+    <div class="faq-title">Frequently Asked Questions</div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            What is our service about?
+            <span class="icon">⌄</span>
+        </div>
+        <div class="faq-answer">
+            Lorem Epsum
+        </div>
+    </div>
+
+<div class="faq-item">
+        <div class="faq-question">
+            How can I contact support?
+        <span class="icon">⌄</span>
+    </div>
+      <div class="faq-answer">
+            Lorem Epsum
+       </div>
+</div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            Do you offer refunds?
+            <span class="icon">⌄</span>
+         </div>
+        <div class="faq-answer">
+            Lorem Epsum
+        </div>
+    </div>
+</div>
+
 
                 @section Scripts {
                     <script src="~/js/Home.js"></script>
