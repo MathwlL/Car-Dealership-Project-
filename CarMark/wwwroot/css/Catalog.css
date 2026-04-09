@@ -1,0 +1,181 @@
+﻿:root {
+    --bg: #222325;
+    --surface: #2c2d30;
+    --surface2: #333;
+    --border: #3a3b3f;
+    --accent: #c40202;
+    --accent2: #ff4d00;
+    --text: #ffffff;
+    --muted: #aaa;
+    --radius: 6px;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: #2c2d30;
+    border-bottom: 1px solid var(--border);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+
+/* LAYOUT */
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+}
+
+/* SIDEBAR */
+aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem;
+}
+
+/* INPUTS */
+.ctrl {
+    width: 100%;
+    background: var(--surface2);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: var(--radius);
+}
+
+    .ctrl:focus {
+        outline: 2px solid var(--accent);
+    }
+
+/* BUTTONS */
+.btn-apply {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .btn-apply:hover {
+        background: #a80000;
+    }
+
+.btn-clear {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+    .btn-clear:hover {
+        color: var(--accent);
+    }
+
+/* MAIN */
+main {
+    padding: 2rem;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* CARD (converted to second design style) */
+.card {
+    flex: 0 220px;
+    text-align: center;
+    padding: 15px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+/* CARD TEXT */
+.card-brand {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.card-model {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.card-price {
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+/* TAGS */
+.tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: #444;
+}
+
+/* EMPTY STATE */
+.empty {
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 780px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    main {
+        padding: 1rem;
+    }
+}

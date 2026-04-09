@@ -1,11 +1,153 @@
-﻿@page
-@model CarlistModel
-
-<h1>Carros</h1>
-
-@foreach (var carro in Model.Carros)
-{
-    <div>
-        <h2>@carro.Company @carro.Model</h2>
-    </div>
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Catálogo de Carros";
+    <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
 }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<header>
+    <div class="logo">Auto<span>Catalog</span></div>
+    <div class="count-pill">@Model.Cars.Count veículos</div>
+</header>
+<body>
+<div class="layout">
+
+    <aside>
+        <div class="sidebar-heading">Filtros</div>
+
+        <form method="get">
+
+            <div class="fg">
+                <label>Marca</label>
+                <div class="sel-wrap">
+                    <select name="FilterCompany" class="ctrl">
+                        <option value="">Todas as marcas</option>
+                        @foreach (var c in Model.Companies)
+                        {
+                            <option value="@c" selected="@(Model.FilterCompany == c ? "selected" : null)">@c</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="fg">
+                <label>Modelo</label>
+                <input type="text" name="FilterModel" class="ctrl"
+                       placeholder="Ex: Civic, Gol, Hilux..."
+                       value="@Model.FilterModel" />
+            </div>
+
+            <div class="fg">
+                <label>Faixa de Preço (R$)</label>
+                <div class="price-row">
+                    <input type="number" name="MinPrice" class="ctrl" placeholder="Mínimo" value="@Model.MinPrice" />
+                    <input type="number" name="MaxPrice" class="ctrl" placeholder="Máximo" value="@Model.MaxPrice" />
+                </div>
+            </div>
+
+            <div class="fg">
+                <label>Condição</label>
+                <div class="cond-group">
+                    @{
+                        var u = Model.FilterUsed;
+                        var baseRoute = new Dictionary<string, string?> {
+                            ["FilterCompany"] = Model.FilterCompany,
+                            ["FilterModel"]   = Model.FilterModel,
+                            ["MinPrice"]      = Model.MinPrice?.ToString(),
+                            ["MaxPrice"]      = Model.MaxPrice?.ToString()
+                        };
+                        string QS(string? used) {
+                            var p = string.Join("&", baseRoute
+                                .Where(kv => kv.Value != null)
+                                .Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value!)}"));
+                            if (used != null) p += (p.Length > 0 ? "&" : "") + $"FilterUsed={used}";
+                            return "/?" + p;
+                        }
+                    }
+                    <a href="@QS(null)"   class="cond-btn @(u == null    ? "on" : "")">Todos</a>
+                    <a href="@QS("false")" class="cond-btn @(u == "false" ? "on" : "")">Novo</a>
+                    <a href="@QS("true")"  class="cond-btn @(u == "true"  ? "on" : "")">Usado</a>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.FilterUsed))
+                {
+                    <input type="hidden" name="FilterUsed" value="@Model.FilterUsed" />
+                }
+            </div>
+
+            <button type="submit" class="btn-apply">Buscar</button>
+            <a href="/" class="btn-clear">Limpar filtros</a>
+
+        </form>
+    </aside>
+
+    <main>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="err">⚠ @Model.ErrorMessage</div>
+        }
+
+        <div class="top-bar">
+            <h1>Catálogo de Veículos</h1>
+            <span>@Model.Cars.Count resultado(s)</span>
+        </div>
+
+        @{
+            bool hasFilters = !string.IsNullOrEmpty(Model.FilterCompany)
+                           || !string.IsNullOrEmpty(Model.FilterModel)
+                           || Model.MinPrice.HasValue || Model.MaxPrice.HasValue
+                           || !string.IsNullOrEmpty(Model.FilterUsed);
+        }
+        @if (hasFilters)
+        {
+            <div class="chips">
+                @if (!string.IsNullOrEmpty(Model.FilterCompany))
+                { <div class="chip"><em>Marca:</em> @Model.FilterCompany</div> }
+                @if (!string.IsNullOrEmpty(Model.FilterModel))
+                { <div class="chip"><em>Modelo:</em> @Model.FilterModel</div> }
+                @if (Model.MinPrice.HasValue)
+                { <div class="chip"><em>Mín:</em> R$ @Model.MinPrice.Value.ToString("N0")</div> }
+                @if (Model.MaxPrice.HasValue)
+                { <div class="chip"><em>Máx:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div> }
+                @if (Model.FilterUsed == "true")
+                { <div class="chip">Usado</div> }
+                @if (Model.FilterUsed == "false")
+                { <div class="chip">Novo</div> }
+            </div>
+        }
+
+        <div class="grid">
+            @if (!Model.Cars.Any())
+            {
+                <div class="empty">
+                    <div class="empty-icon">🚗</div>
+                    <h2>Nenhum carro encontrado</h2>
+                    <p>Tente ajustar os filtros para ver mais resultados.</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var car in Model.Cars)
+                {
+                    <div class="card">
+                        <div class="card-brand">@car.Company</div>
+                        <div class="card-model">@car.Model</div>
+                        <div class="card-tags">
+                            <span class="tag tag-yr">@car.Year</span>
+                            @if (car.Used)
+                            { <span class="tag tag-used">Usado</span> }
+                            else
+                            { <span class="tag tag-new">Novo</span> }
+                        </div>
+                        <div class="card-price-lbl">Preço</div>
+                        <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                    </div>
+                }
+            }
+        </div>
+
+    </main>
+</div>
+</body>
+</html>
