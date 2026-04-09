@@ -1,4 +1,16 @@
+using Supabase;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Supabase
+var supabaseUrl = "https://qfucawohiyffmjmtldhj.supabase.co";
+var supabaseKey = "sb_publishable_sD04tphf_dP3LKw02xwrQg_SoG049gM";
+
+var supabase = new Client(supabaseUrl, supabaseKey);
+await supabase.InitializeAsync();
+
+//adicionar ao sistema de dependência
+builder.Services.AddSingleton(supabase);
 
 // Add services to the container.
 builder.Services.AddRazorPages();

@@ -1,0 +1,11 @@
+﻿@page
+@model CarlistModel
+
+<h1>Carros</h1>
+
+@foreach (var carro in Model.Carros)
+{
+    <div>
+        <h2>@carro.Company @carro.Model</h2>
+    </div>
+}

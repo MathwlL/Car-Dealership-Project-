@@ -49,7 +49,7 @@ header {
     width: 100%;
     z-index: 5;
 }
-
+    
 @media (min-width: 768px) {
     header {
         margin-bottom: 50px;
