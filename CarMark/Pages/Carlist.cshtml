@@ -1,16 +1,19 @@
 @page
-@model IndexModel
+@model CarMark.Pages.CarListaModel
 @{
     ViewData["Title"] = "Catálogo de Carros";
     <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
 }
 <!DOCTYPE html>
 <html lang="pt-BR">
-<header>
-    <div class="logo">Auto<span>Catalog</span></div>
-    <div class="count-pill">@Model.Cars.Count veículos</div>
-</header>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoCatalog</title>
+
+</head>
 <body>
+
 <div class="layout">
 
     <aside>
@@ -62,10 +65,10 @@
                                 .Where(kv => kv.Value != null)
                                 .Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value!)}"));
                             if (used != null) p += (p.Length > 0 ? "&" : "") + $"FilterUsed={used}";
-                            return "/?" + p;
+                            return "/CarLista?" + p;
                         }
                     }
-                    <a href="@QS(null)"   class="cond-btn @(u == null    ? "on" : "")">Todos</a>
+                    <a href="@QS(null)"    class="cond-btn @(u == null    ? "on" : "")">Todos</a>
                     <a href="@QS("false")" class="cond-btn @(u == "false" ? "on" : "")">Novo</a>
                     <a href="@QS("true")"  class="cond-btn @(u == "true"  ? "on" : "")">Usado</a>
                 </div>
@@ -76,7 +79,7 @@
             </div>
 
             <button type="submit" class="btn-apply">Buscar</button>
-            <a href="/" class="btn-clear">Limpar filtros</a>
+            <a href="/CarLista" class="btn-clear">Limpar filtros</a>
 
         </form>
     </aside>
@@ -149,5 +152,6 @@
 
     </main>
 </div>
+
 </body>
 </html>
