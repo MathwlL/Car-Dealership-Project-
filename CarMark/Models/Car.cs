@@ -23,4 +23,7 @@ public class Car : Supabase.Postgrest.Models.BaseModel
 
     [Column("Used")]
     public bool Used { get; set; }
+
+    [Column("Imagem")]
+    public string Image { get; set; }
 }
