@@ -48,30 +48,28 @@
                     <input type="number" name="MaxPrice" class="ctrl" placeholder="Máximo" value="@Model.MaxPrice" />
                 </div>
             </div>
-
-            <div class="fg">
-                <label>Condição</label>
-                <div class="cond-group">
-                    @{
-                        var u = Model.FilterUsed;
-                        var baseRoute = new Dictionary<string, string?> {
-                            ["FilterCompany"] = Model.FilterCompany,
-                            ["FilterModel"]   = Model.FilterModel,
-                            ["MinPrice"]      = Model.MinPrice?.ToString(),
-                            ["MaxPrice"]      = Model.MaxPrice?.ToString()
-                        };
-                        string QS(string? used) {
-                            var p = string.Join("&", baseRoute
-                                .Where(kv => kv.Value != null)
-                                .Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value!)}"));
-                            if (used != null) p += (p.Length > 0 ? "&" : "") + $"FilterUsed={used}";
-                            return "/CarLista?" + p;
-                        }
-                    }
-                    <a href="@QS(null)"    class="cond-btn @(u == null    ? "on" : "")">Todos</a>
-                    <a href="@QS("false")" class="cond-btn @(u == "false" ? "on" : "")">Novo</a>
-                    <a href="@QS("true")"  class="cond-btn @(u == "true"  ? "on" : "")">Usado</a>
-                </div>
+                <div class="fg">
+                    <label>Condição</label>
+                    <div class="cond-group">
+                        <label class="cond-btn @(Model.FilterUsed == null || Model.FilterUsed == "" ? "on" : "")">
+                            <input type="radio" name="FilterUsed" value=""
+                            @(Model.FilterUsed == null || Model.FilterUsed == "" ? "checked" : "")
+                                   hidden />
+                            Todos
+                        </label>
+                        <label class="cond-btn @(Model.FilterUsed == "false" ? "on" : "")">
+                            <input type="radio" name="FilterUsed" value="false"
+                            @(Model.FilterUsed == "false" ? "checked" : "")
+                                   hidden />
+                            Novo
+                        </label>
+                        <label class="cond-btn @(Model.FilterUsed == "true" ? "on" : "")">
+                            <input type="radio" name="FilterUsed" value="true"
+                            @(Model.FilterUsed == "true" ? "checked" : "")
+                                   hidden />
+                            Usado
+                        </label>
+                    </div>
                 @if (!string.IsNullOrEmpty(Model.FilterUsed))
                 {
                     <input type="hidden" name="FilterUsed" value="@Model.FilterUsed" />
@@ -79,7 +77,7 @@
             </div>
 
             <button type="submit" class="btn-apply">Buscar</button>
-            <a href="/CarLista" class="btn-clear">Limpar filtros</a>
+            <a href="/Carlist" class="btn-clear">Limpar filtros</a>
 
         </form>
     </aside>

@@ -57,13 +57,15 @@ namespace CarMark.Pages
                     query = query.Filter("Model", Operator.ILike, $"%{FilterModel}%");
 
                 if (MinPrice.HasValue)
-                    query = query.Filter("Price", Operator.GreaterThanOrEqual, MinPrice.Value);
+                    query = query.Filter("Price", Operator.GreaterThanOrEqual, MinPrice.Value.ToString());
 
                 if (MaxPrice.HasValue)
-                    query = query.Filter("Price", Operator.LessThanOrEqual, MaxPrice.Value);
 
                 if (!string.IsNullOrEmpty(FilterUsed))
-                    query = query.Filter("Used", Operator.Equals, FilterUsed);
+                {
+                    bool usedBool = FilterUsed == "true";
+                    query = query.Filter("Used", Operator.Equals, usedBool.ToString().ToLower());
+                }
 
                 query = query.Order("Price", Ordering.Ascending);
 

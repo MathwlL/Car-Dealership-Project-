@@ -1,7 +1,7 @@
 using Supabase;
 
 var builder = WebApplication.CreateBuilder(args);
-
+ 
 //Supabase
 var supabaseUrl = builder.Configuration["Supabase:Url"];
 var supabaseKey = builder.Configuration["Supabase:Key"];
