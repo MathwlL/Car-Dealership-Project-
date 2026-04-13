@@ -60,6 +60,7 @@ namespace CarMark.Pages
                     query = query.Filter("Price", Operator.GreaterThanOrEqual, MinPrice.Value.ToString());
 
                 if (MaxPrice.HasValue)
+                    query = query.Filter("Price", Operator.LessThanOrEqual, MaxPrice.Value.ToString());
 
                 if (!string.IsNullOrEmpty(FilterUsed))
                 {

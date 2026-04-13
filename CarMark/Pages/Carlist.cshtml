@@ -10,146 +10,165 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AutoCatalog</title>
-
 </head>
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <aside>
-        <div class="sidebar-heading">Filtros</div>
+        <aside>
+            <div class="sidebar-heading">Filtros</div>
 
-        <form method="get">
+            <form method="get" id="filterForm">
 
-            <div class="fg">
-                <label>Marca</label>
-                <div class="sel-wrap">
-                    <select name="FilterCompany" class="ctrl">
-                        <option value="">Todas as marcas</option>
-                        @foreach (var c in Model.Companies)
-                        {
-                            <option value="@c" selected="@(Model.FilterCompany == c ? "selected" : null)">@c</option>
-                        }
-                    </select>
+                <div class="fg">
+                    <label>Marca</label>
+                    <div class="sel-wrap">
+                        <select name="FilterCompany" class="ctrl">
+                            <option value="">Todas as marcas</option>
+                            @foreach (var c in Model.Companies)
+                            {
+                                <option value="@c" selected="@(Model.FilterCompany == c ? "selected" : null)">@c</option>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="fg">
-                <label>Modelo</label>
-                <input type="text" name="FilterModel" class="ctrl"
-                       placeholder="Ex: Civic, Gol, Hilux..."
-                       value="@Model.FilterModel" />
-            </div>
-
-            <div class="fg">
-                <label>Faixa de Preço (R$)</label>
-                <div class="price-row">
-                    <input type="number" name="MinPrice" class="ctrl" placeholder="Mínimo" value="@Model.MinPrice" />
-                    <input type="number" name="MaxPrice" class="ctrl" placeholder="Máximo" value="@Model.MaxPrice" />
+                <div class="fg">
+                    <label>Modelo</label>
+                    <input type="text" name="FilterModel" class="ctrl"
+                           placeholder="Ex: Civic, Gol, Hilux..."
+                           value="@Model.FilterModel" />
                 </div>
-            </div>
+
+                <div class="fg">
+                    <label>Faixa de Preço (R$)</label>
+                    <div class="price-row">
+                        <input type="number" name="MinPrice" class="ctrl"
+                               placeholder="Mínimo" value="@Model.MinPrice"
+                               min="0" step="1" />
+                        <input type="number" name="MaxPrice" class="ctrl"
+                               placeholder="Máximo" value="@Model.MaxPrice"
+                               min="0" step="1" />
+                    </div>
+                </div>
+
                 <div class="fg">
                     <label>Condição</label>
                     <div class="cond-group">
-                        <label class="cond-btn @(Model.FilterUsed == null || Model.FilterUsed == "" ? "on" : "")">
+                        <label class="cond-btn @(string.IsNullOrEmpty(Model.FilterUsed) ? "on" : "")">
                             <input type="radio" name="FilterUsed" value=""
-                            @(Model.FilterUsed == null || Model.FilterUsed == "" ? "checked" : "")
-                                   hidden />
+                                   style="display:none"
+                            @(string.IsNullOrEmpty(Model.FilterUsed) ? "checked" : "") />
                             Todos
                         </label>
                         <label class="cond-btn @(Model.FilterUsed == "false" ? "on" : "")">
                             <input type="radio" name="FilterUsed" value="false"
-                            @(Model.FilterUsed == "false" ? "checked" : "")
-                                   hidden />
+                                   style="display:none"
+                            @(Model.FilterUsed == "false" ? "checked" : "") />
                             Novo
                         </label>
                         <label class="cond-btn @(Model.FilterUsed == "true" ? "on" : "")">
                             <input type="radio" name="FilterUsed" value="true"
-                            @(Model.FilterUsed == "true" ? "checked" : "")
-                                   hidden />
+                                   style="display:none"
+                            @(Model.FilterUsed == "true" ? "checked" : "") />
                             Usado
                         </label>
                     </div>
-                @if (!string.IsNullOrEmpty(Model.FilterUsed))
-                {
-                    <input type="hidden" name="FilterUsed" value="@Model.FilterUsed" />
-                }
-            </div>
+                </div>
 
-            <button type="submit" class="btn-apply">Buscar</button>
-            <a href="/Carlist" class="btn-clear">Limpar filtros</a>
+                <button type="submit" class="btn-apply">Buscar</button>
+                <button type="button" class="btn-clear" onclick="clearFilters()">Limpar filtros</button>
 
-        </form>
-    </aside>
+            </form>
+        </aside>
 
-    <main>
+        <main>
 
-        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-        {
-            <div class="err">⚠ @Model.ErrorMessage</div>
-        }
-
-        <div class="top-bar">
-            <h1>Catálogo de Veículos</h1>
-            <span>@Model.Cars.Count resultado(s)</span>
-        </div>
-
-        @{
-            bool hasFilters = !string.IsNullOrEmpty(Model.FilterCompany)
-                           || !string.IsNullOrEmpty(Model.FilterModel)
-                           || Model.MinPrice.HasValue || Model.MaxPrice.HasValue
-                           || !string.IsNullOrEmpty(Model.FilterUsed);
-        }
-        @if (hasFilters)
-        {
-            <div class="chips">
-                @if (!string.IsNullOrEmpty(Model.FilterCompany))
-                { <div class="chip"><em>Marca:</em> @Model.FilterCompany</div> }
-                @if (!string.IsNullOrEmpty(Model.FilterModel))
-                { <div class="chip"><em>Modelo:</em> @Model.FilterModel</div> }
-                @if (Model.MinPrice.HasValue)
-                { <div class="chip"><em>Mín:</em> R$ @Model.MinPrice.Value.ToString("N0")</div> }
-                @if (Model.MaxPrice.HasValue)
-                { <div class="chip"><em>Máx:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div> }
-                @if (Model.FilterUsed == "true")
-                { <div class="chip">Usado</div> }
-                @if (Model.FilterUsed == "false")
-                { <div class="chip">Novo</div> }
-            </div>
-        }
-
-        <div class="grid">
-            @if (!Model.Cars.Any())
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
             {
-                <div class="empty">
-                    <div class="empty-icon">🚗</div>
-                    <h2>Nenhum carro encontrado</h2>
-                    <p>Tente ajustar os filtros para ver mais resultados.</p>
+                <div class="err">⚠ @Model.ErrorMessage</div>
+            }
+
+            <div class="top-bar">
+                <h1>Catálogo de Veículos</h1>
+                <span>@Model.Cars.Count resultado(s)</span>
+            </div>
+
+            @{
+                bool hasFilters = !string.IsNullOrEmpty(Model.FilterCompany)
+                               || !string.IsNullOrEmpty(Model.FilterModel)
+                               || Model.MinPrice.HasValue || Model.MaxPrice.HasValue
+                               || !string.IsNullOrEmpty(Model.FilterUsed);
+            }
+            @if (hasFilters)
+            {
+                <div class="chips">
+                    @if (!string.IsNullOrEmpty(Model.FilterCompany))
+                    {
+                        <div class="chip"><em>Marca:</em> @Model.FilterCompany</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.FilterModel))
+                    {
+                        <div class="chip"><em>Modelo:</em> @Model.FilterModel</div>
+                    }
+                    @if (Model.MinPrice.HasValue)
+                    {
+                        <div class="chip"><em>Mín:</em> R$ @Model.MinPrice.Value.ToString("N0")</div>
+                    }
+                    @if (Model.MaxPrice.HasValue)
+                    {
+                        <div class="chip"><em>Máx:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div>
+                    }
+                    @if (Model.FilterUsed == "true")
+                    {
+                        <div class="chip">Usado</div>
+                    }
+                    @if (Model.FilterUsed == "false")
+                    {
+                        <div class="chip">Novo</div>
+                    }
                 </div>
             }
-            else
-            {
-                @foreach (var car in Model.Cars)
+
+            <div class="grid">
+                @if (!Model.Cars.Any())
                 {
-                    <div class="card">
-                        <div class="card-brand">@car.Company</div>
-                        <div class="card-model">@car.Model</div>
-                        <div class="card-tags">
-                            <span class="tag tag-yr">@car.Year</span>
-                            @if (car.Used)
-                            { <span class="tag tag-used">Usado</span> }
-                            else
-                            { <span class="tag tag-new">Novo</span> }
-                        </div>
-                        <div class="card-price-lbl">Preço</div>
-                        <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                    <div class="empty">
+                        <div class="empty-icon">🚗</div>
+                        <h2>Nenhum carro encontrado</h2>
+                        <p>Tente ajustar os filtros para ver mais resultados.</p>
                     </div>
                 }
-            }
-        </div>
+                else
+                {
+                    @foreach (var car in Model.Cars)
+                    {
+                        <div class="card">
+                            <div class="card-brand">@car.Company</div>
+                            <div class="card-model">@car.Model</div>
+                            <div class="card-tags">
+                                <span class="tag tag-yr">@car.Year</span>
+                                @if (car.Used)
+                                {
+                                    <span class="tag tag-used">Usado</span>
+                                }
+                                else
+                                {
 
-    </main>
-</div>
+                                    <span class="tag tag-new">Novo</span>
+                                }
+                            </div>
+                            <div class="card-price-lbl">Preço</div>
+                            <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </main>
+    </div>
+
+    <script src="~/js/CarLista.js" asp-append-version="true"></script>
 
 </body>
 </html>
