@@ -1,3 +1,4 @@
+using CarMark.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static Supabase.Postgrest.Constants;
@@ -72,6 +73,24 @@ namespace CarMark.Pages
 
                 var result = await query.Get();
                 Cars = result.Models;
+
+                var imagesResult = await _supabase
+                    .From<CarMark.Models.CarImage>()
+                    .Select("CarID, Img_Url")
+                    .Get();
+
+                var imageMap = imagesResult.Models
+                    .GroupBy(img => img.CarId)
+                    .ToDictionary(
+                        g => (long)g.Key,
+                        g => g.First().ImgUrl ?? string.Empty
+                    );
+
+                foreach (var car in Cars)
+                {
+                    if (string.IsNullOrEmpty(car.Image) && imageMap.TryGetValue(car.Id, out var url))
+                        car.Image = url ?? string.Empty;
+                }
             }
             catch (Exception ex)
             {

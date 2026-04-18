@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\CarImgs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Models\CarImgs.cs" />
     <Content Include="Models\Car.cs" />
   </ItemGroup>
 

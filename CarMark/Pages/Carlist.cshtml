@@ -52,30 +52,6 @@
                     </div>
                 </div>
 
-                <div class="fg">
-                    <label>Condição</label>
-                    <div class="cond-group">
-                        <label class="cond-btn @(string.IsNullOrEmpty(Model.FilterUsed) ? "on" : "")">
-                            <input type="radio" name="FilterUsed" value=""
-                                   style="display:none"
-                            @(string.IsNullOrEmpty(Model.FilterUsed) ? "checked" : "") />
-                            Todos
-                        </label>
-                        <label class="cond-btn @(Model.FilterUsed == "false" ? "on" : "")">
-                            <input type="radio" name="FilterUsed" value="false"
-                                   style="display:none"
-                            @(Model.FilterUsed == "false" ? "checked" : "") />
-                            Novo
-                        </label>
-                        <label class="cond-btn @(Model.FilterUsed == "true" ? "on" : "")">
-                            <input type="radio" name="FilterUsed" value="true"
-                                   style="display:none"
-                            @(Model.FilterUsed == "true" ? "checked" : "") />
-                            Usado
-                        </label>
-                    </div>
-                </div>
-
                 <button type="submit" class="btn-apply">Buscar</button>
                 <button type="button" class="btn-clear" onclick="clearFilters()">Limpar filtros</button>
 
@@ -144,23 +120,36 @@
                     @foreach (var car in Model.Cars)
                     {
                         <div class="card">
-                            <div class="card-brand">@car.Company</div>
-                            <div class="card-model">@car.Model</div>
-                            <div class="card-tags">
-                                <span class="tag tag-yr">@car.Year</span>
-                                @if (car.Used)
-                                {
-                                    <span class="tag tag-used">Usado</span>
-                                }
-                                else
-                                {
+                            <%-- ADD THIS IMAGE BLOCK --%>
+                                <div class="card-img-wrap">
+                                    @if (!string.IsNullOrEmpty(car.Image))
+                                    {
+                                        <img src="@car.Image"
+                                             alt="@car.Company @car.Model"
+                                             class="card-img"
+                                             onerror="this.closest('.card-img-wrap').classList.add('card-img--fallback')" />
+                                    }
+                                    else
+                                    {
+                                        <div class="card-img--fallback">
+                                            <span>🚗</span>
+                                        </div>
+                                    }
+                                </div>
 
-                                    <span class="tag tag-new">Novo</span>
-                                }
+                                <div class="card-body">
+                                    <div class="card-brand">@car.Company</div>
+                                    <div class="card-model">@car.Model</div>
+                                    <div class="card-tags">
+                                        <span class="tag tag-yr">@car.Year</span>
+                                        <span class="tag @(car.Used ? "tag-used" : "tag-new")">
+                                            @(car.Used ? "Usado" : "Novo")
+                                        </span>
+                                    </div>
+                                    <div class="card-price-lbl">Preço</div>
+                                    <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                                </div>
                             </div>
-                            <div class="card-price-lbl">Preço</div>
-                            <div class="card-price">R$ @car.Price.ToString("N0")</div>
-                        </div>
                     }
                 }
             </div>
