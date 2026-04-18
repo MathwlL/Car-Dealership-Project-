@@ -75,7 +75,7 @@ namespace CarMark.Pages
                 Cars = result.Models;
 
                 var imagesResult = await _supabase
-                    .From<CarMark.Models.CarImage>()
+                    .From<CarImage>()
                     .Select("CarID, Img_Url")
                     .Get();
 

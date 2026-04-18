@@ -1,4 +1,4 @@
-using Supabase.Postgrest.Attributes;
+﻿using Supabase.Postgrest.Attributes;
 
 namespace CarMark.Models
 {
