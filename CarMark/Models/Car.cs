@@ -9,24 +9,23 @@ namespace CarMark.Models
 
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
-
-        [Column("Company")]
         public string Company { get; set; } = string.Empty;
 
-        [Column("Model")]
         public string Model { get; set; } = string.Empty;
 
-        [Column("Price")]
         public long Price { get; set; }
 
-        [Column("Year")]
         public int Year { get; set; }
 
-        [Column("Used")]
         public bool Used { get; set; }
 
+        public string? Details { get; set; }
+
         [Column("Imagem")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
+
+        [Column("SellerID")]
+        public long? SellerId { get; set; }
     }
 
 }

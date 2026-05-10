@@ -1,0 +1,76 @@
+@page
+@model CarMark.Pages.AddCarModel
+@{
+    ViewData["Title"] = "Add car";
+    <link rel="stylesheet" href="~/css/OwnerCar.css" asp-append-version="true" />
+}
+
+<section class="owner-page">
+    <div class="owner-shell">
+        <div class="owner-heading">
+            <p>Seller area</p>
+            <h1>Add car</h1>
+            <span>Add the listing details and upload images that are stored in the database as Base64 text.</span>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="notice notice-error">@Model.ErrorMessage</div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="notice notice-success">@Model.SuccessMessage</div>
+        }
+
+        <form method="post" enctype="multipart/form-data" class="owner-form">
+            <label class="wide-field">
+                Registered seller email
+                <input asp-for="Input.SellerEmail" required maxlength="160" type="email" placeholder="seller@example.com" />
+            </label>
+
+            <div class="form-grid">
+                <label>
+                    Make
+                    <input asp-for="Input.Company" required maxlength="80" placeholder="Ex: Honda" />
+                </label>
+
+                <label>
+                    Model
+                    <input asp-for="Input.Model" required maxlength="100" placeholder="Ex: Civic Touring" />
+                </label>
+
+                <label>
+                    Price
+                    <input asp-for="Input.Price" required min="0" step="1" type="number" placeholder="Ex: 120000" />
+                </label>
+
+                <label>
+                    Year
+                    <input asp-for="Input.Year" required min="1900" max="2100" type="number" />
+                </label>
+            </div>
+
+            <label class="condition-toggle">
+                <input asp-for="Input.Used" type="checkbox" />
+                <span>This car is used</span>
+            </label>
+
+            <label class="wide-field">
+                Details
+                <textarea asp-for="Input.Details" maxlength="3000" rows="7" placeholder="Describe condition, trim, maintenance, features, and anything buyers should know."></textarea>
+            </label>
+
+            <label class="image-upload">
+                Car images
+                <input asp-for="Images" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple />
+                <small>Images are converted to Base64 and stored in the CarImages table.</small>
+            </label>
+
+            <div class="form-actions">
+                <a asp-page="/Carlist" class="btn-secondary">Back to catalog</a>
+                <button type="submit" class="btn-primary">Save car</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -9,5 +9,5 @@
 
 });
 function clearFilters() {
-    window.location.href = '/CarLista';
+    window.location.href = '/Carlist';
 }

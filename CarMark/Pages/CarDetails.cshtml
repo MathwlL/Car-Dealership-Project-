@@ -1,0 +1,83 @@
+@page "{id:long}"
+@model CarMark.Pages.CarDetailsModel
+@{
+    ViewData["Title"] = "Car details";
+    <link rel="stylesheet" href="~/css/CarDetails.css" asp-append-version="true" />
+}
+
+<section class="car-detail-page">
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="detail-notice">@Model.ErrorMessage</div>
+    }
+    else if (Model.Car != null)
+    {
+        var mainImage = Model.Images.FirstOrDefault()?.ImgUrl ?? Model.Car.Image;
+
+        <div class="detail-shell">
+            <a asp-page="/Carlist" class="back-link">Back to catalog</a>
+
+            <div class="detail-grid">
+                <div class="gallery">
+                    <div class="main-photo">
+                        @if (!string.IsNullOrWhiteSpace(mainImage))
+                        {
+                            <img src="@mainImage" alt="@Model.Car.Company @Model.Car.Model" />
+                        }
+                        else
+                        {
+                            <div class="photo-placeholder">No image</div>
+                        }
+                    </div>
+
+                    @if (Model.Images.Count > 1)
+                    {
+                        <div class="thumb-grid">
+                            @foreach (var image in Model.Images)
+                            {
+                                <img src="@image.ImgUrl" alt="@Model.Car.Company @Model.Car.Model" />
+                            }
+                        </div>
+                    }
+                </div>
+
+                <aside class="detail-panel">
+                    <p class="eyebrow">@Model.Car.Company</p>
+                    <h1>@Model.Car.Model</h1>
+                    <div class="price">R$ @Model.Car.Price.ToString("N0")</div>
+
+                    <dl class="spec-list">
+                        <div>
+                            <dt>Year</dt>
+                            <dd>@Model.Car.Year</dd>
+                        </div>
+                        <div>
+                            <dt>Condition</dt>
+                            <dd>@(Model.Car.Used ? "Used" : "New")</dd>
+                        </div>
+                    </dl>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Car.Details))
+                    {
+                        <section class="detail-copy">
+                            <h2>Details</h2>
+                            <p>@Model.Car.Details</p>
+                        </section>
+                    }
+
+                    @if (Model.Seller != null)
+                    {
+                        <section class="seller-card">
+                            <h2>Seller contact</h2>
+                            <p>@Model.Seller.Name</p>
+                            <a href="mailto:@Model.Seller.Email">@Model.Seller.Email</a>
+                            <a href="tel:@Model.Seller.Phone">@Model.Seller.Phone</a>
+                        </section>
+                    }
+
+                    <a asp-page="/AddCar" class="owner-link">Add another car</a>
+                </aside>
+            </div>
+        </div>
+    }
+</section>

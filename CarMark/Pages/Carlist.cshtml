@@ -1,11 +1,11 @@
 @page
 @model CarMark.Pages.CarListaModel
 @{
-    ViewData["Title"] = "Catálogo de Carros";
+    ViewData["Title"] = "Car catalog";
     <link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
 }
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,15 +16,15 @@
     <div class="layout">
 
         <aside>
-            <div class="sidebar-heading">Filtros</div>
+            <div class="sidebar-heading">Filters</div>
 
             <form method="get" id="filterForm">
 
                 <div class="fg">
-                    <label>Marca</label>
+                    <label>Make</label>
                     <div class="sel-wrap">
                         <select name="FilterCompany" class="ctrl">
-                            <option value="">Todas as marcas</option>
+                            <option value="">All makes</option>
                             @foreach (var c in Model.Companies)
                             {
                                 <option value="@c" selected="@(Model.FilterCompany == c ? "selected" : null)">@c</option>
@@ -34,26 +34,26 @@
                 </div>
 
                 <div class="fg">
-                    <label>Modelo</label>
+                    <label>Model</label>
                     <input type="text" name="FilterModel" class="ctrl"
                            placeholder="Ex: Civic, Gol, Hilux..."
                            value="@Model.FilterModel" />
                 </div>
 
                 <div class="fg">
-                    <label>Faixa de Preço (R$)</label>
+                    <label>Price range (R$)</label>
                     <div class="price-row">
                         <input type="number" name="MinPrice" class="ctrl"
-                               placeholder="Mínimo" value="@Model.MinPrice"
+                               placeholder="Minimum" value="@Model.MinPrice"
                                min="0" step="1" />
                         <input type="number" name="MaxPrice" class="ctrl"
-                               placeholder="Máximo" value="@Model.MaxPrice"
+                               placeholder="Maximum" value="@Model.MaxPrice"
                                min="0" step="1" />
                     </div>
                 </div>
 
-                <button type="submit" class="btn-apply">Buscar</button>
-                <button type="button" class="btn-clear" onclick="clearFilters()">Limpar filtros</button>
+                <button type="submit" class="btn-apply">Search</button>
+                <button type="button" class="btn-clear" onclick="clearFilters()">Clear filters</button>
 
             </form>
         </aside>
@@ -62,12 +62,12 @@
 
             @if (!string.IsNullOrEmpty(Model.ErrorMessage))
             {
-                <div class="err">⚠ @Model.ErrorMessage</div>
+                <div class="err">Warning: @Model.ErrorMessage</div>
             }
 
             <div class="top-bar">
-                <h1>Catálogo de Veículos</h1>
-                <span>@Model.Cars.Count resultado(s)</span>
+                <h1>Vehicle catalog</h1>
+                <span>@Model.Cars.Count result(s)</span>
             </div>
 
             @{
@@ -81,27 +81,27 @@
                 <div class="chips">
                     @if (!string.IsNullOrEmpty(Model.FilterCompany))
                     {
-                        <div class="chip"><em>Marca:</em> @Model.FilterCompany</div>
+                        <div class="chip"><em>Make:</em> @Model.FilterCompany</div>
                     }
                     @if (!string.IsNullOrEmpty(Model.FilterModel))
                     {
-                        <div class="chip"><em>Modelo:</em> @Model.FilterModel</div>
+                        <div class="chip"><em>Model:</em> @Model.FilterModel</div>
                     }
                     @if (Model.MinPrice.HasValue)
                     {
-                        <div class="chip"><em>Mín:</em> R$ @Model.MinPrice.Value.ToString("N0")</div>
+                        <div class="chip"><em>Min:</em> R$ @Model.MinPrice.Value.ToString("N0")</div>
                     }
                     @if (Model.MaxPrice.HasValue)
                     {
-                        <div class="chip"><em>Máx:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div>
+                        <div class="chip"><em>Max:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div>
                     }
                     @if (Model.FilterUsed == "true")
                     {
-                        <div class="chip">Usado</div>
+                        <div class="chip">Used</div>
                     }
                     @if (Model.FilterUsed == "false")
                     {
-                        <div class="chip">Novo</div>
+                        <div class="chip">New</div>
                     }
                 </div>
             }
@@ -110,45 +110,45 @@
                 @if (!Model.Cars.Any())
                 {
                     <div class="empty">
-                        <div class="empty-icon">🚗</div>
-                        <h2>Nenhum carro encontrado</h2>
-                        <p>Tente ajustar os filtros para ver mais resultados.</p>
+                        <div class="empty-icon">Car</div>
+                        <h2>No cars found</h2>
+                        <p>Try adjusting the filters to see more results.</p>
                     </div>
                 }
                 else
                 {
                     @foreach (var car in Model.Cars)
                     {
-                        <div class="card">
-                                <div class="card-img-wrap">
-                                    @if (!string.IsNullOrEmpty(car.Image))
-                                    {
-                                        <img src="@car.Image"
-                                             alt="@car.Company @car.Model"
-                                             class="card-img"
-                                             onerror="this.closest('.card-img-wrap').classList.add('card-img--fallback')" />
-                                    }
-                                    else
-                                    {
-                                        <div class="card-img--fallback">
-                                            <span>🚗</span>
-                                        </div>
-                                    }
-                                </div>
-
-                                <div class="card-body">
-                                    <div class="card-brand">@car.Company</div>
-                                    <div class="card-model">@car.Model</div>
-                                    <div class="card-tags">
-                                        <span class="tag tag-yr">@car.Year</span>
-                                        <span class="tag @(car.Used ? "tag-used" : "tag-new")">
-                                            @(car.Used ? "Usado" : "Novo")
-                                        </span>
+                        <a class="card" asp-page="/CarDetails" asp-route-id="@car.Id">
+                            <div class="card-img-wrap">
+                                @if (!string.IsNullOrEmpty(car.Image))
+                                {
+                                    <img src="@car.Image"
+                                         alt="@car.Company @car.Model"
+                                         class="card-img"
+                                         onerror="this.closest('.card-img-wrap').classList.add('card-img--fallback')" />
+                                }
+                                else
+                                {
+                                    <div class="card-img--fallback">
+                                        <span>Car</span>
                                     </div>
-                                    <div class="card-price-lbl">Preço</div>
-                                    <div class="card-price">R$ @car.Price.ToString("N0")</div>
-                                </div>
+                                }
                             </div>
+
+                            <div class="card-body">
+                                <div class="card-brand">@car.Company</div>
+                                <div class="card-model">@car.Model</div>
+                                <div class="card-tags">
+                                    <span class="tag tag-yr">@car.Year</span>
+                                    <span class="tag @(car.Used ? "tag-used" : "tag-new")">
+                                        @(car.Used ? "Used" : "New")
+                                    </span>
+                                </div>
+                                <div class="card-price-lbl">Price</div>
+                                <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                            </div>
+                        </a>
                     }
                 }
             </div>

@@ -1,0 +1,59 @@
+@page
+@model CarMark.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    <link rel="stylesheet" href="~/css/OwnerCar.css" asp-append-version="true" />
+}
+
+<section class="owner-page">
+    <div class="owner-shell">
+        <div class="owner-heading">
+            <p>Account</p>
+            <h1>Register</h1>
+            <span>Create a buyer, seller, or combined account for CarMark.</span>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="notice notice-error">@Model.ErrorMessage</div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="notice notice-success">@Model.SuccessMessage</div>
+        }
+
+        <form method="post" class="owner-form">
+            <div class="form-grid">
+                <label>
+                    Name
+                    <input asp-for="Input.Name" required maxlength="100" placeholder="Example: Alex Carter" />
+                </label>
+
+                <label>
+                    Email
+                    <input asp-for="Input.Email" required maxlength="160" type="email" placeholder="alex@example.com" />
+                </label>
+
+                <label>
+                    Phone
+                    <input asp-for="Input.Phone" required maxlength="30" placeholder="+1 555 0100" />
+                </label>
+
+                <label>
+                    Account type
+                    <select asp-for="Input.AccountType" required>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="both">Buyer and seller</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <a asp-page="/Carlist" class="btn-secondary">Back to catalog</a>
+                <button type="submit" class="btn-primary">Create account</button>
+            </div>
+        </form>
+    </div>
+</section>

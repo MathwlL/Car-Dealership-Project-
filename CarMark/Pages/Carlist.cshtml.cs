@@ -94,7 +94,7 @@ namespace CarMark.Pages
             }
             catch (Exception ex)
             {
-                ErrorMessage = $"Erro ao carregar dados: {ex.Message}";
+                ErrorMessage = $"Error loading data: {ex.Message}";
             }
         }
     }
