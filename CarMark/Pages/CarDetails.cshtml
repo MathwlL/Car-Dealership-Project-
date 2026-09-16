@@ -75,7 +75,10 @@
                         </section>
                     }
 
-                    <a asp-page="/AddCar" class="owner-link">Add another car</a>
+                    @if (User.IsInRole("Seller"))
+                    {
+                        <a asp-page="/AddCar" class="owner-link">Anunciar outro veículo</a>
+                    }
                 </aside>
             </div>
         </div>

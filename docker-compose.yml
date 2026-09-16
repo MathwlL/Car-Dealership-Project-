@@ -1,0 +1,16 @@
+services:
+  carmark:
+    build:
+      context: ./CarMark
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      DataDirectory: /data
+    volumes:
+      - carmark-data:/data
+    restart: unless-stopped
+
+volumes:
+  carmark-data:

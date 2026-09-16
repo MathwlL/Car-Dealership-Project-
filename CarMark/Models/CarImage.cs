@@ -1,17 +1,9 @@
-﻿using Supabase.Postgrest.Attributes;
+namespace CarMark.Models;
 
-namespace CarMark.Models
+public class CarImage
 {
-    [Table("CarImages")]
-    public class CarImage : Supabase.Postgrest.Models.BaseModel
-    {
-        [PrimaryKey("id", false)]
-        public long Id { get; set; }
-
-        [Column("Img_Url")]
-        public string? ImgUrl { get; set; }
-
-        [Column("CarID")]
-        public long CarId { get; set; }
-    }
+    public long Id { get; set; }
+    public string? ImgUrl { get; set; }
+    public long CarId { get; set; }
+    public Car? Car { get; set; }
 }

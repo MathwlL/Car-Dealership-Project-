@@ -17,6 +17,10 @@
 mono_crash.*
 
 # Build results
+[Cc]arMark/carmark.db
+[Cc]arMark/carmark.db-shm
+[Cc]arMark/carmark.db-wal
+[Cc]arMark/App_Data/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

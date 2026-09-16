@@ -1,37 +1,42 @@
-using Supabase;
+using CarMark.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
- 
-//Supabase
-var supabaseUrl = builder.Configuration["Supabase:Url"];
-var supabaseKey = builder.Configuration["Supabase:Key"];
+var dataDirectory = builder.Configuration["DataDirectory"]
+    ?? Path.Combine(builder.Environment.ContentRootPath, "App_Data");
+Directory.CreateDirectory(dataDirectory);
+var databasePath = Path.Combine(dataDirectory, "carmark.db");
 
-var supabase = new Client(supabaseUrl, supabaseKey);
-await supabase.InitializeAsync();
-
-builder.Services.AddSingleton(supabase);
-
-// Add services to the container.
+builder.Services.AddDbContext<CarMarkDbContext>(options => options.UseSqlite($"Data Source={databasePath}"));
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(dataDirectory, "keys")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login";
+        options.AccessDeniedPath = "/AccessDenied";
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.GetRequiredService<CarMarkDbContext>().Database.EnsureCreated();
+}
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
-
+app.MapRazorPages().WithStaticAssets();
 app.Run();

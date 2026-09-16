@@ -4,15 +4,10 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>6b034c6b-e971-45b3-a66a-d69b7449698f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Models\Car.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Supabase" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
