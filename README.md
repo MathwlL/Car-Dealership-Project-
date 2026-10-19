@@ -41,7 +41,7 @@ The following technologies are relevant to the project. The actual dependencies 
 | C# | Main programming language |
 | .NET / ASP.NET Core | Web application development |
 | Entity Framework Core | Object-relational mapping |
-| SQL Server or SQLite | Database storage, depending on configuration |
+| SQLite | Database storage, depending on configuration |
 | HTML, CSS, JavaScript | User interface |
 | Bootstrap | Responsive styling |
 | Git and GitHub | Version control and source code hosting |
@@ -208,7 +208,7 @@ Open the local URL displayed in the terminal.
 
 ##  Author
 
-**Author:** `[Your Name or GitHub Username]`
+**Author:** `[Matheus Lira Lisbôa]`
 
 **Repository:** [Car Dealership Project](https://github.com/MathwlL/Car-Dealership-Project-)
 
