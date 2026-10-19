@@ -134,7 +134,7 @@ Registration, password recovery, and role-based access control may be added as t
 
 <!-- Add a screenshot of the Login page here -->
 
-![Login Page]([docs/images/login.png](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B61D129CC-F376-4450-8FA7-1B08790C78BB%7D.png))
+![Login Page](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B61D129CC-F376-4450-8FA7-1B08790C78BB%7D.png)
 
 ---
 
