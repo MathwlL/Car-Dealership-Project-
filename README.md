@@ -82,7 +82,7 @@ The Home page serves as the main entry point of the application, introducing the
 
 <!-- Add a screenshot of the Home page here -->
 
-![Home Page](/Githubassets/{5923AABF-45F2-47BC-AED1-47BECB305196}.png)
+![Home Page](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B5923AABF-45F2-47BC-AED1-47BECB305196%7D.png)
 
 ### 2. Vehicle Search
 
