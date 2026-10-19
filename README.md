@@ -11,22 +11,6 @@ This project aims to demonstrate web development concepts, database integration,
 
 ---
 
-##  Table of Contents
-
-- [About the Project](#-about-the-project)
-- [Project Goals](#-project-goals)
-- [Technologies](#-technologies)
-- [Features](#-features)
-- [User Interface](#-user-interface)
-- [Database](#-database)
-- [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Security Review](#-security-review)
-- [Future Improvements](#-future-improvements)
-- [Author](#-author)
-
----
-
 ##  About the Project
 
 The Car Dealership Project is a web application that simulates the basic operations of a fictional car dealership.
