@@ -110,7 +110,7 @@ The Vehicle Search page allows visitors to browse the catalog and find vehicles 
 
 <!-- Add a screenshot of the Vehicle Search page here -->
 
-![Vehicle Search]([docs/images/search.png](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B96D13862-C12A-46DB-8B52-80D45ADCF1A8%7D.png))
+![Vehicle Search](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B96D13862-C12A-46DB-8B52-80D45ADCF1A8%7D.png)
 ![Vehicle Search](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B81334D5E-78FE-4F07-A376-FF9ED3FC52FE%7D.png)
 
 ### 3. Login and Authentication
