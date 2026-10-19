@@ -11,7 +11,7 @@ This project aims to demonstrate web development concepts, database integration,
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [About the Project](#-about-the-project)
 - [Project Goals](#-project-goals)
@@ -27,7 +27,7 @@ This project aims to demonstrate web development concepts, database integration,
 
 ---
 
-## 📌 About the Project
+##  About the Project
 
 The Car Dealership Project is a web application that simulates the basic operations of a fictional car dealership.
 
@@ -48,7 +48,7 @@ The application is intended to evolve into a maintainable and secure system, fol
 - Apply input validation and access control.
 - Follow security best practices throughout development.
 
-## 🛠️ Technologies
+##  Technologies
 
 The following technologies are relevant to the project. The actual dependencies should be confirmed against the source code.
 
@@ -64,7 +64,7 @@ The following technologies are relevant to the project. The actual dependencies 
 
 ---
 
-## ✨ Features
+##  Features
 
 ### 1. Home Page
 
@@ -108,7 +108,6 @@ The Vehicle Search page allows visitors to browse the catalog and find vehicles 
 
 **Screenshot**
 
-<!-- Add a screenshot of the Vehicle Search page here -->
 
 ![Vehicle Search](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B96D13862-C12A-46DB-8B52-80D45ADCF1A8%7D.png)
 ![Vehicle Search](https://github.com/MathwlL/Car-Dealership-Project-/blob/f315b5a39c075b21371fb2cc447d7772d6daf856/Github%20assets/%7B81334D5E-78FE-4F07-A376-FF9ED3FC52FE%7D.png)
@@ -138,7 +137,7 @@ Registration, password recovery, and role-based access control may be added as t
 
 ---
 
-## 🗄️ Database
+##  Database
 
 The database is intended to store the information required by the application, including vehicle details and, if implemented, user account information.
 
@@ -155,49 +154,7 @@ The following entities represent a possible future design and are not a confirme
 | `Categories` | Organizes vehicles by category, if needed |
 | `VehicleImages` | Stores or references vehicle images, if needed |
 
-### Suggested Relationships
-
-- A vehicle may have multiple images.
-- A category may contain multiple vehicles.
-- Users may have different roles and permissions if administrative features are implemented.
-
-### Data Integrity and Persistence
-
-The database implementation should consider:
-
-- Primary keys and foreign key constraints.
-- Required fields and appropriate data types.
-- Server-side data validation.
-- Safe database queries.
-- Database migrations, if Entity Framework Core is used.
-- Backup and recovery procedures for deployed environments.
-
-**Database configuration**
-
-- Database engine: `TODO`
-- Data access technology: `TODO`
-- Database context: `TODO`
-- Entity location: `TODO`
-- Migrations location: `TODO`
-
 ---
-
-## 🏗️ Project Structure
-
-The following structure is an example of how an ASP.NET Core project could be organized. It must be adapted to match the actual repository.
-
-```text
-Car-Dealership-Project/
-├── Controllers/
-├── Models/
-├── Data/
-├── Services/
-├── Views/
-├── wwwroot/
-├── appsettings.json
-├── Program.cs
-└── README.md
-```
 
 ### Main Components
 
@@ -213,7 +170,7 @@ The actual structure depends on whether the project uses MVC, Razor Pages, a Web
 
 ---
 
-## ▶️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 
