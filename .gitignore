@@ -266,6 +266,7 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
+carmark.db
 *.mdf
 *.ldf
 *.ndf
