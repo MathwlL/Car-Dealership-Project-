@@ -82,7 +82,7 @@ The Home page serves as the main entry point of the application, introducing the
 
 <!-- Add a screenshot of the Home page here -->
 
-![Home Page](docs/images/home.png)
+![Home Page](/Githubassets/{5923AABF-45F2-47BC-AED1-47BECB305196}.png)
 
 ### 2. Vehicle Search
 
