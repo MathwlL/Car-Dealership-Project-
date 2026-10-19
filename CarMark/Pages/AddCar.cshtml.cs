@@ -21,7 +21,7 @@ public class AddCarModel(CarMarkDbContext database) : PageModel
         if (!ModelState.IsValid) return Page();
         var sellerId = long.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var imageData = await ReadImagesAsDataUrlsAsync();
-        var car = new Car { Company = Input.Company.Trim(), Model = Input.Model.Trim(), Price = Input.Price, Year = Input.Year, Used = Input.Used, Details = Input.Details?.Trim(), Image = imageData.FirstOrDefault(), SellerId = sellerId };
+        var car = new Car { Company = Input.Company.Trim(), Model = Input.Model.Trim(), Price = Input.Price, Currency = Input.Currency, Year = Input.Year, Used = Input.Used, Details = Input.Details?.Trim(), Image = imageData.FirstOrDefault(), SellerId = sellerId };
         database.Cars.Add(car);
         await database.SaveChangesAsync();
         database.CarImages.AddRange(imageData.Select(image => new CarImage { CarId = car.Id, ImgUrl = image }));
@@ -48,6 +48,7 @@ public class AddCarModel(CarMarkDbContext database) : PageModel
         [Required, StringLength(80)] public string Company { get; set; } = string.Empty;
         [Required, StringLength(100)] public string Model { get; set; } = string.Empty;
         [Range(0, long.MaxValue)] public long Price { get; set; }
+        [Required, RegularExpression("BRL|USD|EUR|GBP")] public string Currency { get; set; } = "BRL";
         [Range(1900, 2100)] public int Year { get; set; } = DateTime.UtcNow.Year;
         public bool Used { get; set; }
         [StringLength(3000)] public string? Details { get; set; }

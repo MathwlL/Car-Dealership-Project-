@@ -1,0 +1,30 @@
+:root { --profile-bg:#222325; --profile-panel:#2c2d30; --profile-soft:#34363a; --profile-border:#43454b; --profile-text:#fff; --profile-muted:#b7b7b7; --profile-accent:#c40202; }
+.profile-page,.my-vehicles-page { min-height:80vh; padding:150px 20px 70px; background:var(--profile-bg); color:var(--profile-text); }
+.profile-shell,.my-vehicles-heading { width:min(950px,100%); margin:0 auto; }
+.profile-heading p,.my-vehicles-heading p { margin:0 0 8px; color:var(--profile-accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+.profile-heading h1,.my-vehicles-heading h1 { margin:0; font-size:clamp(2rem,5vw,3.25rem); }
+.profile-heading span,.my-vehicles-heading span { display:block; margin-top:9px; color:var(--profile-muted); }
+.profile-form { display:grid; grid-template-columns:240px 1fr; gap:30px; margin-top:28px; padding:28px; background:var(--profile-panel); border:1px solid var(--profile-border); border-radius:12px; }
+.profile-photo-column { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; color:var(--profile-muted); }
+.profile-avatar { width:150px; height:150px; display:grid; place-items:center; overflow:hidden; border:4px solid var(--profile-soft); border-radius:50%; background:var(--profile-accent); color:#fff; font-size:3.5rem; font-weight:800; }
+.profile-avatar img { width:100%; height:100%; object-fit:cover; }
+.profile-photo-column input { position:absolute; width:1px; height:1px; opacity:0; }
+.photo-picker,.profile-primary,.profile-secondary,.my-vehicles-add { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 16px; border-radius:7px; text-decoration:none; font-weight:800; cursor:pointer; }
+.photo-picker,.profile-secondary { background:var(--profile-soft); color:#fff; }
+.profile-primary,.my-vehicles-add { border:0; background:var(--profile-accent); color:#fff; }
+.profile-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.profile-fields label { display:flex; flex-direction:column; gap:8px; color:var(--profile-muted); font-weight:700; }
+.profile-fields input { width:100%; padding:12px 14px; border:1px solid var(--profile-border); border-radius:7px; background:var(--profile-soft); color:#fff; }
+.profile-fields input:focus { outline:2px solid var(--profile-accent); border-color:transparent; }
+.profile-fields input[readonly] { opacity:.65; cursor:not-allowed; }
+.profile-actions { grid-column:1/-1; display:flex; justify-content:flex-end; gap:12px; margin-top:8px; }
+.privacy-settings { grid-column:1/-1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:16px; border:1px solid var(--profile-border); border-radius:8px; }
+.privacy-settings legend { padding:0 6px; color:#fff; font-weight:800; }.privacy-settings p { grid-column:1/-1; margin:0 0 4px; color:var(--profile-muted); font-size:.9rem; }.privacy-option { display:flex !important; flex-direction:row !important; align-items:center; gap:9px !important; color:#fff !important; font-size:.9rem; }.privacy-option input { width:17px; height:17px; }
+.seller-profile-page { min-height:80vh; padding:150px 20px 70px; background:var(--profile-bg); color:#fff; }.seller-profile-card,.seller-listings-title,.seller-profile-page .grid { width:min(950px,100%); margin-left:auto; margin-right:auto; }.seller-profile-card { display:flex; align-items:center; gap:24px; padding:28px; border:1px solid var(--profile-border); border-radius:12px; background:var(--profile-panel); }.seller-public-avatar { width:112px; height:112px; flex:0 0 112px; overflow:hidden; display:grid; place-items:center; border-radius:50%; background:var(--profile-accent); font-size:2.5rem; font-weight:800; }.seller-public-avatar img { width:100%; height:100%; object-fit:cover; }.seller-profile-label { margin:0; color:var(--profile-accent); font-weight:800; text-transform:uppercase; letter-spacing:.08em; }.seller-profile-card h1 { margin:5px 0; }.seller-profile-count { color:var(--profile-muted); }.seller-profile-card a,.seller-profile-card span { display:block; margin-top:5px; color:#fff; }.seller-listings-title { margin-top:40px; margin-bottom:20px; }.seller-profile-page .grid { justify-content:flex-start; }
+.notice { margin:20px 0 0; border-radius:7px; padding:12px 14px; }
+.notice-success { background:#174a30; color:#d6ffe6; }
+.my-vehicles-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:28px; }
+.my-vehicles-page .grid { width:min(1120px,100%); margin:0 auto; }
+.my-vehicles-page .empty { width:min(600px,100%); margin:0 auto; background:var(--profile-panel); border-radius:12px; }
+.my-vehicles-page .empty .my-vehicles-add { margin-top:18px; }
+@media(max-width:700px){.profile-page,.my-vehicles-page{padding-top:110px}.profile-form{grid-template-columns:1fr}.profile-fields{grid-template-columns:1fr}.profile-actions,.my-vehicles-heading{align-items:stretch; flex-direction:column}.profile-primary,.profile-secondary,.my-vehicles-add{width:100%;}}

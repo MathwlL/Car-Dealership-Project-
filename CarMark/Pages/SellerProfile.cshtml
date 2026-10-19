@@ -1,0 +1,25 @@
+@page "/sellers/{id:long}"
+@model CarMark.Pages.SellerProfileModel
+@{ ViewData["Title"] = "Seller profile"; }
+<link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
+
+@if (Model.Seller is not null)
+{
+    <section class="seller-profile-page">
+        <div class="seller-profile-card">
+            <div class="seller-public-avatar">
+                @if (Model.Seller.ShowProfileImage && !string.IsNullOrWhiteSpace(Model.Seller.ProfileImage)) { <img src="@Model.Seller.ProfileImage" alt="@Model.Seller.Name" /> }
+                else { <span>@Model.Seller.Name.FirstOrDefault().ToString().ToUpperInvariant()</span> }
+            </div>
+            <div><p class="seller-profile-label">Verified seller</p><h1>@Model.Seller.Name</h1><p class="seller-profile-count">@Model.Cars.Count vehicle listing(s)</p>
+                @if (Model.Seller.ShowEmail) { <a href="mailto:@Model.Seller.Email">@Model.Seller.Email</a> }
+                @if (Model.Seller.ShowPhone) { <a href="tel:@Model.Seller.Phone">@Model.Seller.Phone</a> }
+                @if (Model.Seller.ShowBirthDate && Model.Seller.BirthDate.HasValue) { <span>Born @Model.Seller.BirthDate.Value.ToString("MMMM d, yyyy")</span> }
+            </div>
+        </div>
+        <div class="seller-listings-title"><h2>Vehicle listings</h2></div>
+        @if (!Model.Cars.Any()) { <div class="empty"><h2>No active listings</h2></div> }
+        else { <div class="grid">@foreach (var car in Model.Cars) { <a class="card" asp-page="/CarDetails" asp-route-id="@car.Id"><div class="card-img-wrap">@if (!string.IsNullOrWhiteSpace(car.Image)) { <img class="card-img" src="@car.Image" alt="@car.Company @car.Model" /> } else { <div class="card-img--fallback">Car</div> }</div><div class="card-body"><div class="card-brand">@car.Company</div><div class="card-model">@car.Model</div><div class="card-price">@car.Currency @car.Price.ToString("N0")</div></div></a>}</div> }
+    </section>
+}

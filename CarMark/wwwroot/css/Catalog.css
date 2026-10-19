@@ -80,6 +80,61 @@ main {
     padding: 2rem;
 }
 
+.top-bar,
+.catalog-tools {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.top-bar {
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.top-bar h1 {
+    margin: 0;
+}
+
+.catalog-tools {
+    color: var(--muted);
+    flex-wrap: wrap;
+}
+
+.currency-picker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 8px 5px 12px;
+    background: var(--surface2);
+    color: var(--muted);
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.currency-picker select {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: #44464b;
+    color: var(--text);
+    padding: 6px 28px 6px 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.currency-picker select:focus {
+    outline: 2px solid var(--accent);
+}
+
+.currency-rate-status {
+    width: 100%;
+    font-size: .72rem;
+    text-align: right;
+}
+
 .grid {
     display: flex;
     flex-wrap: wrap;
@@ -147,6 +202,11 @@ main {
     main {
         padding: 1rem;
     }
+
+    .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 
 .card {
@@ -169,6 +229,7 @@ main {
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
+    border-radius: 0rem !important; 
 }
 
 .card:hover .card-img {

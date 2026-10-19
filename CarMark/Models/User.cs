@@ -9,6 +9,11 @@ public class User
     public string Phone { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
+    public string? ProfileImage { get; set; }
+    public bool ShowProfileImage { get; set; }
+    public bool ShowEmail { get; set; }
+    public bool ShowPhone { get; set; }
+    public bool ShowBirthDate { get; set; }
     public bool IsSeller { get; set; }
     public bool IsBuyer { get; set; }
 }

@@ -177,6 +177,30 @@ body {
     color: #ffd8d8;
 }
 
+.detail-panel .form-actions {
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.delete-listing-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid #9c3030;
+    border-radius: 7px;
+    background: transparent;
+    color: #ffaaa5;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.delete-listing-button span { font-size: 1.45rem; line-height: 1; font-weight: 400; }
+.delete-listing-button:hover { background: #7e2525; border-color: #db4a43; color: #fff; }
+
 @media (max-width: 820px) {
     .car-detail-page {
         padding-top: 110px;

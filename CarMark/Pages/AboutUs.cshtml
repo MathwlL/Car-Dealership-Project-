@@ -1,0 +1,84 @@
+﻿@page
+@model CarMark.Pages.AboutUsModel
+@{
+    ViewData["Title"] = "About Us";
+    <link rel="stylesheet" href="~/css/AboutUs.css" asp-append-version="true" />
+}
+
+<section class="about-hero">
+    <div class="about-hero-content">
+        <h1>Driving Trust, One Car at a Time</h1>
+        <p>
+            CarMark was built to make buying and selling cars simple, transparent, and safe —
+            connecting real people with real vehicles, without the hassle of traditional dealerships.
+        </p>
+    </div>
+</section>
+
+<section class="about-stats">
+    <div class="stat-item">
+        <span class="stat-number">12K+</span>
+        <span class="stat-label">Cars Listed</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">8K+</span>
+        <span class="stat-label">Happy Buyers</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">50+</span>
+        <span class="stat-label">Cities Covered</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">4.8★</span>
+        <span class="stat-label">Average Rating</span>
+    </div>
+</section>
+
+<section class="about-story">
+    <div class="about-story-text">
+        <h2>Our Story</h2>
+        <p>
+            CarMark started with a simple idea: buying or selling a car shouldn't feel like a gamble.
+            What began as a small project to help local sellers reach trustworthy buyers has grown into
+            a full marketplace where thousands of vehicles change hands every month.
+        </p>
+        <p>
+            Today, we combine an easy-to-use platform with verified listings and direct communication
+            between buyers and sellers, cutting out the middleman while keeping the process safe and
+            transparent for everyone involved.
+        </p>
+    </div>
+
+</section>
+
+<section class="about-values">
+    <h2>What We Stand For</h2>
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-icon">🔍</div>
+            <h4>Transparency</h4>
+            <p>Every listing includes clear, honest details so buyers know exactly what they're getting.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h4>Trust</h4>
+            <p>We verify sellers and encourage honest reviews to build a community you can rely on.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">⚡</div>
+            <h4>Simplicity</h4>
+            <p>From listing a car to closing a deal, we keep the process fast, clear, and stress-free.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h4>Accessibility</h4>
+            <p>Wherever you are, CarMark connects you with vehicles and buyers near you.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-cta">
+    <h2>Ready to find your next car?</h2>
+    <p>Join thousands of buyers and sellers already using CarMark.</p>
+    <a asp-page="/Carlist" class="btn btn-cta">Browse Vehicles</a>
+</section>

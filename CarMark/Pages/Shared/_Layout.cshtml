@@ -34,24 +34,25 @@
                                 <li class="nav-item"><a class="nav-link" asp-page="/AddCar">Sell</a></li>
                             }
                             <li class="nav-item"><a class="nav-link" asp-page="/Carlist">Cars</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">Services</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-page="/Privacy">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-page="/AboutUs">About Us</a></li>
                         </ul>
 
                         <ul class="navbar-nav ms-auto align-items-sm-center">
                             @if (User.Identity?.IsAuthenticated == true)
                             {
-                                <li class="nav-item"><span class="nav-link">Olá, @User.Identity.Name</span></li>
+                                <li class="nav-item"><span class="nav-link">Hello, @User.Identity.Name</span></li>
+                                <li class="nav-item"><a class="nav-link" asp-page="/Profile">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-page="/MyCars">My vehicles</a></li>
                                 <li class="nav-item">
                                     <form method="post" asp-page="/Logout" class="d-inline">
-                                        <button class="nav-link btn btn-link p-0 border-0" type="submit">Sair</button>
+                                        <button class="nav-link btn btn-link p-0 border-0" type="submit">Leave</button>
                                     </form>
                                 </li>
                             }
                             else
                             {
-                                <li class="nav-item"><a class="nav-link" asp-page="/Login">Entrar</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-page="/Register">Criar conta</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-page="/Login">Enter</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-page="/Register">Register</a></li>
                             }
                         </ul>
                     </div>
@@ -111,8 +112,8 @@
                                         <div class="footer-menu-wrap d-md-flex align-items-center">
                                             <ul class="footer-menu mr-auto">
                                                 <li><a asp-page="/Index">Home</a></li>
-                                                <li><a asp-page="/Privacy">About</a></li>
-                                                <li><a href="#">Services</a></li>
+                                                <li><a asp-page="/Privacy">Privacy</a></li>
+                                                <li><a asp-page="/AboutUs">About Us</a></li>
                                                 <li><a href="#">Contacts</a></li>
                                             </ul>
                                             <div class="site-logo-wrap ml-auto">

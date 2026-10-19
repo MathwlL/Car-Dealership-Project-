@@ -24,7 +24,7 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
-    scope.ServiceProvider.GetRequiredService<CarMarkDbContext>().Database.EnsureCreated();
+    await DatabaseInitializer.InitializeAsync(scope.ServiceProvider.GetRequiredService<CarMarkDbContext>());
 }
 
 if (!app.Environment.IsDevelopment())
@@ -38,5 +38,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapStaticAssets();
+app.MapGet("/Carlist", () => Results.Redirect("/cars"));
+app.MapGet("/AddCar", () => Results.Redirect("/sell"));
 app.MapRazorPages().WithStaticAssets();
 app.Run();

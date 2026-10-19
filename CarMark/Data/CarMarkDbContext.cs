@@ -16,12 +16,18 @@ public class CarMarkDbContext(DbContextOptions<CarMarkDbContext> options) : DbCo
             entity.HasIndex(user => user.Email).IsUnique();
             entity.Property(user => user.Email).HasMaxLength(160);
             entity.Property(user => user.Name).HasMaxLength(100);
+            entity.Property(user => user.ProfileImage);
+            entity.Property(user => user.ShowProfileImage).HasDefaultValue(false);
+            entity.Property(user => user.ShowEmail).HasDefaultValue(false);
+            entity.Property(user => user.ShowPhone).HasDefaultValue(false);
+            entity.Property(user => user.ShowBirthDate).HasDefaultValue(false);
         });
         modelBuilder.Entity<Car>(entity =>
         {
             entity.HasOne(car => car.Seller).WithMany().HasForeignKey(car => car.SellerId).OnDelete(DeleteBehavior.Restrict);
             entity.Property(car => car.Company).HasMaxLength(80);
             entity.Property(car => car.Model).HasMaxLength(100);
+            entity.Property(car => car.Currency).HasMaxLength(3).HasDefaultValue("BRL");
         });
         modelBuilder.Entity<CarImage>().HasOne(image => image.Car).WithMany(car => car.Images).HasForeignKey(image => image.CarId);
     }

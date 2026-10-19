@@ -7,6 +7,7 @@ public class Car
     public string Company { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
     public long Price { get; set; }
+    public string Currency { get; set; } = "BRL";
     public int Year { get; set; }
     public bool Used { get; set; }
     public string? Details { get; set; }

@@ -1,4 +1,4 @@
-@page
+@page "/cars"
 @model CarMark.Pages.CarListaModel
 @{
     ViewData["Title"] = "Car catalog";
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="fg">
-                    <label>Price range (R$)</label>
+                    <label>Price range</label>
                     <div class="price-row">
                         <input type="number" name="MinPrice" class="ctrl"
                                placeholder="Minimum" value="@Model.MinPrice"
@@ -67,7 +67,19 @@
 
             <div class="top-bar">
                 <h1>Vehicle catalog</h1>
-                <span>@Model.Cars.Count result(s)</span>
+                <div class="catalog-tools">
+                    <span>@Model.Cars.Count result(s)</span>
+                    <label class="currency-picker" for="currency-selector">
+                        <span>Currency</span>
+                        <select id="currency-selector" aria-label="Select display currency">
+                            <option value="BRL">BRL (R$)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                        </select>
+                    </label>
+                    <span id="currency-rate-status" class="currency-rate-status" aria-live="polite">Loading live exchange rates…</span>
+                </div>
             </div>
 
             @{
@@ -89,11 +101,11 @@
                     }
                     @if (Model.MinPrice.HasValue)
                     {
-                        <div class="chip"><em>Min:</em> R$ @Model.MinPrice.Value.ToString("N0")</div>
+                        <div class="chip"><em>Min:</em> original currency @Model.MinPrice.Value.ToString("N0")</div>
                     }
                     @if (Model.MaxPrice.HasValue)
                     {
-                        <div class="chip"><em>Max:</em> R$ @Model.MaxPrice.Value.ToString("N0")</div>
+                        <div class="chip"><em>Max:</em> original currency @Model.MaxPrice.Value.ToString("N0")</div>
                     }
                     @if (Model.FilterUsed == "true")
                     {
@@ -146,7 +158,7 @@
                                     </span>
                                 </div>
                                 <div class="card-price-lbl">Price</div>
-                                <div class="card-price">R$ @car.Price.ToString("N0")</div>
+                                <div class="card-price" data-price-amount="@car.Price" data-price-currency="@car.Currency"></div>
                             </div>
                         </a>
                     }
@@ -157,6 +169,7 @@
     </div>
 
     <script src="~/js/CarLista.js" asp-append-version="true"></script>
+    <script src="~/js/currency.js" asp-append-version="true"></script>
 
 </body>
 </html>

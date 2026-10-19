@@ -1,6 +1,109 @@
-@page
+
+@page "/sell"
 @model CarMark.Pages.AddCarModel
-@{ ViewData["Title"] = "Anunciar veículo"; }
+@{ ViewData["Title"] = "List a Vehicle"; }
+
 <link rel="stylesheet" href="~/css/OwnerCar.css" asp-append-version="true" />
-<section class="owner-page"><div class="owner-shell"><div class="owner-heading"><p>Área do vendedor</p><h1>Anuncie seu veículo</h1><span>As informações publicadas aqui aparecem automaticamente no catálogo de carros.</span></div>
-<form method="post" enctype="multipart/form-data" class="owner-form"><div asp-validation-summary="ModelOnly" class="notice notice-error"></div><div class="form-grid"><label>Marca<input asp-for="Input.Company" maxlength="80" placeholder="Ex.: Honda" /></label><label>Modelo<input asp-for="Input.Model" maxlength="100" placeholder="Ex.: Civic Touring" /></label><label>Preço<input asp-for="Input.Price" min="0" type="number" placeholder="Ex.: 120000" /></label><label>Ano<input asp-for="Input.Year" min="1900" max="2100" type="number" /></label></div><label class="condition-toggle"><input asp-for="Input.Used" type="checkbox" /><span>Este veículo é usado</span></label><label class="wide-field">Detalhes<textarea asp-for="Input.Details" maxlength="3000" rows="7" placeholder="Condição, itens, manutenção e outras informações importantes."></textarea></label><label class="image-upload">Fotos do veículo<input asp-for="Images" type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple /><small>JPEG, PNG, WebP ou GIF; até 5 MB por foto.</small></label><div class="form-actions"><a asp-page="/Carlist" class="btn-secondary">Ver catálogo</a><button type="submit" class="btn-primary">Publicar veículo</button></div></form></div></section>
+
+<section class="owner-page">
+    <div class="owner-shell">
+        <div class="owner-heading">
+            <p>Seller Area</p>
+            <h1>List Your Vehicle</h1>
+            <span>
+                The information published here automatically appears in the car catalog.
+            </span>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="owner-form">
+            <div asp-validation-summary="ModelOnly" class="notice notice-error"></div>
+
+            <div class="form-grid">
+                <label>
+                    Make
+                    <input asp-for="Input.Company"
+                           maxlength="80"
+                           placeholder="E.g., Honda" />
+                </label>
+
+                <label>
+                    Model
+                    <input asp-for="Input.Model"
+                           maxlength="100"
+                           placeholder="E.g., Civic Touring" />
+                </label>
+
+                <label>
+                    Original price
+                    <input asp-for="Input.Price"
+                           min="0"
+                           type="number"
+                           placeholder="E.g., 120000" />
+                </label>
+
+                <label>
+                    Original currency
+                    <select asp-for="Input.Currency">
+                        <option value="BRL">BRL — Brazilian real</option>
+                        <option value="USD">USD — US dollar</option>
+                        <option value="EUR">EUR — Euro</option>
+                        <option value="GBP">GBP — British pound</option>
+                    </select>
+                </label>
+
+                <label>
+                    Year
+                    <input asp-for="Input.Year"
+                           min="1900"
+                           max="2100"
+                           type="number" />
+                </label>
+            </div>
+
+            <label class="condition-toggle">
+                <input asp-for="Input.Used" type="checkbox" />
+                <span>This is a used vehicle</span>
+            </label>
+
+            <label class="wide-field">
+                Details
+                <textarea asp-for="Input.Details"
+                          maxlength="3000"
+                          rows="7"
+                          placeholder="Condition, features, maintenance, and other important information."></textarea>
+            </label>
+
+            <label class="image-upload">
+                <span class="upload-title">Vehicle photos</span>
+                <input asp-for="Images"
+                       id="vehicle-images"
+                       type="file"
+                       accept="image/png,image/jpeg,image/webp,image/gif"
+                       multiple />
+                <span class="upload-button">Choose photos</span>
+                <small id="upload-count">JPEG, PNG, WebP, or GIF; up to 5 MB per photo.</small>
+            </label>
+
+            <div class="form-actions">
+                <a asp-page="/Carlist" class="btn-secondary">
+                    View Catalog
+                </a>
+
+                <button type="submit" class="btn-primary">
+                    Publish Vehicle
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.getElementById('vehicle-images')?.addEventListener('change', function () {
+            const count = this.files.length;
+            document.getElementById('upload-count').textContent = count
+                ? `${count} photo${count === 1 ? '' : 's'} selected`
+                : 'JPEG, PNG, WebP, or GIF; up to 5 MB per photo.';
+        });
+    </script>
+}

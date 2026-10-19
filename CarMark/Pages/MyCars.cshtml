@@ -1,0 +1,25 @@
+@page "/my-vehicles"
+@model CarMark.Pages.MyCarsModel
+@{ ViewData["Title"] = "My vehicles"; }
+<link rel="stylesheet" href="~/css/Catalog.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
+
+<section class="my-vehicles-page">
+    <div class="my-vehicles-heading"><div><p>Seller area</p><h1>My vehicles</h1><span>@Model.Cars.Count listing(s)</span></div><a asp-page="/AddCar" class="my-vehicles-add">+ List a vehicle</a></div>
+    @if (!Model.Cars.Any())
+    {
+        <div class="empty"><div class="empty-icon">Car</div><h2>No listings yet</h2><p>Publish your first vehicle to see it here.</p><a asp-page="/AddCar" class="my-vehicles-add">List a vehicle</a></div>
+    }
+    else
+    {
+        <div class="grid">
+            @foreach (var car in Model.Cars)
+            {
+                <a class="card" asp-page="/CarDetails" asp-route-id="@car.Id">
+                    <div class="card-img-wrap">@if (!string.IsNullOrWhiteSpace(car.Image)) { <img src="@car.Image" class="card-img" alt="@car.Company @car.Model" /> } else { <div class="card-img--fallback"><span>Car</span></div> }</div>
+                    <div class="card-body"><div class="card-brand">@car.Company</div><div class="card-model">@car.Model</div><div class="card-tags"><span class="tag tag-yr">@car.Year</span><span class="tag @(car.Used ? "tag-used" : "tag-new")">@(car.Used ? "Used" : "New")</span></div><div class="card-price-lbl">Price</div><div class="card-price">@car.Currency @car.Price.ToString("N0")</div></div>
+                </a>
+            }
+        </div>
+    }
+</section>

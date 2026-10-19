@@ -1,0 +1,51 @@
+@page "/profile"
+@model CarMark.Pages.ProfileModel
+@{ ViewData["Title"] = "My profile"; }
+<link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
+
+<section class="profile-page">
+    <div class="profile-shell">
+        <div class="profile-heading"><p>Account</p><h1>My profile</h1><span>Keep your contact details and profile photo up to date.</span></div>
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage)) { <div class="notice notice-success">@Model.SuccessMessage</div> }
+        <form method="post" enctype="multipart/form-data" class="profile-form">
+            <div class="profile-photo-column">
+                <div class="profile-avatar">
+                    @if (!string.IsNullOrWhiteSpace(Model.ProfileImage)) { <img src="@Model.ProfileImage" alt="Profile photo" /> }
+                    else { <span>@(Model.Input.Name.FirstOrDefault().ToString().ToUpperInvariant())</span> }
+                </div>
+                <label class="photo-picker" for="profile-photo">Change photo</label>
+                <input id="profile-photo" asp-for="ProfilePhoto" type="file" accept="image/png,image/jpeg,image/webp" />
+                <small>JPEG, PNG, or WebP · up to 2 MB</small>
+            </div>
+            <div class="profile-fields">
+                <label>Name<input asp-for="Input.Name" autocomplete="name" /></label>
+                <label>Email<input value="@User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value" readonly aria-label="Email" /></label>
+                <label>Phone<input asp-for="Input.Phone" autocomplete="tel" /></label>
+                <label>Date of birth<input asp-for="Input.BirthDate" type="date" /></label>
+                <fieldset class="privacy-settings">
+                    <legend>Seller profile visibility</legend>
+                    <p>Only selected information is visible to visitors on your public seller profile.</p>
+                    <label class="privacy-option"><input asp-for="Input.ShowProfileImage" type="checkbox" /> Show profile photo</label>
+                    <label class="privacy-option"><input asp-for="Input.ShowEmail" type="checkbox" /> Show email</label>
+                    <label class="privacy-option"><input asp-for="Input.ShowPhone" type="checkbox" /> Show phone</label>
+                    <label class="privacy-option"><input asp-for="Input.ShowBirthDate" type="checkbox" /> Show date of birth</label>
+                </fieldset>
+                <div class="profile-actions"><a asp-page="/MyCars" class="profile-secondary">My vehicles</a><button type="submit" class="profile-primary">Save changes</button></div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.getElementById('profile-photo')?.addEventListener('change', function () {
+            const file = this.files[0];
+            if (!file) return;
+            const image = document.querySelector('.profile-avatar img');
+            const fallback = document.querySelector('.profile-avatar span');
+            const url = URL.createObjectURL(file);
+            if (image) image.src = url;
+            else if (fallback) fallback.outerHTML = `<img src="${url}" alt="Profile photo preview">`;
+        });
+    </script>
+}

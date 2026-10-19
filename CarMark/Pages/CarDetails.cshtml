@@ -1,4 +1,4 @@
-@page "{id:long}"
+@page "/cars/{id:long}"
 @model CarMark.Pages.CarDetailsModel
 @{
     ViewData["Title"] = "Car details";
@@ -44,7 +44,7 @@
                 <aside class="detail-panel">
                     <p class="eyebrow">@Model.Car.Company</p>
                     <h1>@Model.Car.Model</h1>
-                    <div class="price">R$ @Model.Car.Price.ToString("N0")</div>
+                    <div class="price">@Model.Car.Currency @Model.Car.Price.ToString("N0")</div>
 
                     <dl class="spec-list">
                         <div>
@@ -69,15 +69,21 @@
                     {
                         <section class="seller-card">
                             <h2>Seller contact</h2>
-                            <p>@Model.Seller.Name</p>
-                            <a href="mailto:@Model.Seller.Email">@Model.Seller.Email</a>
-                            <a href="tel:@Model.Seller.Phone">@Model.Seller.Phone</a>
+                            <a asp-page="/SellerProfile" asp-route-id="@Model.Seller.Id">@Model.Seller.Name</a>
+                            @if (Model.Seller.ShowEmail) { <a href="mailto:@Model.Seller.Email">@Model.Seller.Email</a> }
+                            @if (Model.Seller.ShowPhone) { <a href="tel:@Model.Seller.Phone">@Model.Seller.Phone</a> }
+                            <a class="seller-profile-link" asp-page="/SellerProfile" asp-route-id="@Model.Seller.Id">View seller profile</a>
                         </section>
                     }
 
-                    @if (User.IsInRole("Seller"))
+                    @if (Model.CanManageCar)
                     {
-                        <a asp-page="/AddCar" class="owner-link">Anunciar outro veículo</a>
+                        <div class="form-actions">
+                            <a asp-page="/AddCar" class="owner-link">List another vehicle</a>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Car.Id" onsubmit="return confirm('Delete this vehicle listing? This cannot be undone.');">
+                                <button type="submit" class="delete-listing-button"><span aria-hidden="true">×</span> Delete listing</button>
+                            </form>
+                        </div>
                     }
                 </aside>
             </div>
